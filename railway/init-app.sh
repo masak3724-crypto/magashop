@@ -40,7 +40,6 @@ until php artisan migrate:status --no-interaction >/dev/null 2>&1; do
   sleep 2
 done
 
-php artisan package:discover --no-interaction
 php artisan storage:link --force 2>/dev/null || true
 php artisan migrate --force --no-interaction
 php artisan db:seed --class=Database\\Seeders\\RailwaySeeder --force --no-interaction

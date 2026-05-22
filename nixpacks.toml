@@ -5,6 +5,8 @@
 NIXPACKS_PHP_VERSION = "8.4"
 # Валидный URL на этапе сборки (в Variables Railway не подставляйте ${{...}} в APP_URL)
 APP_URL = "http://localhost"
+# Только для package:discover на этапе сборки
+APP_KEY = "base64:ZmFrZWtleWZvcmJ1aWxkb25seTEyMzQ1Njc4OTBhYmNkZWZnaGlq"
 
 [phases.setup]
 nixPkgs = [
@@ -26,6 +28,8 @@ nixPkgs = [
 [phases.build]
 cmds = [
   "composer install --no-dev --optimize-autoloader --no-interaction --no-scripts",
+  "sh railway/clear-cache.sh",
+  "php artisan package:discover --no-interaction",
 ]
 
 [start]
