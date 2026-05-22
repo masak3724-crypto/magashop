@@ -29,7 +29,7 @@
 
 ## 4. Деплой
 
-При **старте** `railway/start.sh`: HTTP-сервер сразу (healthcheck `/up`), миграции и seed — в фоне. Первые ~30 с главная может дать 500 — обновите страницу.
+Перед запуском контейнера (**pre-deploy**): `railway/predeploy.sh` — миграции и идемпотентный `RailwaySeeder`. При **старте** — только HTTP (`railway/start.sh`).
 
 1. Проверка `APP_KEY` и подключения PostgreSQL
 2. `migrate --force`
@@ -38,7 +38,7 @@
 
 Healthcheck: `GET /up` (см. `railway.json`).
 
-Обязательные переменные: `APP_KEY`, `DATABASE_URL` (или связь с Postgres). Без `APP_KEY` деплой упадёт при старте — см. шаг 3.
+Обязательные переменные: `APP_KEY`, `DATABASE_URL` (или связь с Postgres). Без `APP_KEY` pre-deploy завершится с ошибкой.
 
 ## 5. Локальная разработка
 
