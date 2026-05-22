@@ -14,7 +14,7 @@
                 </a>
             </div>
             <div class="col-md-4">
-                <a href="{{ route('services.tire-service') }}" class="feature-strip-item feature-strip-link">
+                <a href="{{ route('services.loyalty') }}" class="feature-strip-item feature-strip-link">
                     <img src="{{ asset('images/icon-fitting.svg') }}" alt="" class="feature-strip-icon" width="22" height="22">
                     <span>Примерка перед покупкой</span>
                 </a>

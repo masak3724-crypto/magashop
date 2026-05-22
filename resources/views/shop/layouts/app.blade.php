@@ -90,7 +90,7 @@
                 <h5 class="fw-bold mb-3">Покупателям</h5>
                 <p class="mb-2"><a href="{{ route('services.delivery') }}" class="text-white text-decoration-none opacity-75">Доставка и примерка</a></p>
                 <p class="mb-2"><a href="{{ route('services.guarantee') }}" class="text-white text-decoration-none opacity-75">Возврат и обмен</a></p>
-                <p class="mb-4"><a href="{{ route('services.tire-service') }}" class="text-white text-decoration-none opacity-75">Программа лояльности</a></p>
+                <p class="mb-4"><a href="{{ route('services.loyalty') }}" class="text-white text-decoration-none opacity-75">Программа лояльности</a></p>
                 <h5 class="fw-bold mb-3">Контакты</h5>
                 <p class="mb-2"><i class="fas fa-envelope me-2 text-accent"></i> info@modastyle.ru</p>
                 <p class="mb-2"><i class="fas fa-phone me-2 text-accent"></i> <a href="tel:+79379535480" class="text-white text-decoration-none">+7 937 953 54 80</a></p>

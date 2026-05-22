@@ -14,8 +14,8 @@ class ServiceController extends Controller
         return view('shop.services.guarantee');
     }
 
-    public function tireService()
+    public function loyalty()
     {
-        return view('shop.services.tire-service');
+        return view('shop.services.loyalty');
     }
 }

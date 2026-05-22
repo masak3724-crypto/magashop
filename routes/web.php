@@ -22,7 +22,7 @@ Route::get('/privacy', [HomeController::class, 'privacy'])->name('privacy');
 Route::get('/offer', [HomeController::class, 'offer'])->name('offer');
 Route::get('/delivery', [ServiceController::class, 'delivery'])->name('services.delivery');
 Route::get('/guarantee', [ServiceController::class, 'guarantee'])->name('services.guarantee');
-Route::get('/tire-service', [ServiceController::class, 'tireService'])->name('services.tire-service');
+Route::get('/loyalty', [ServiceController::class, 'loyalty'])->name('services.loyalty');
 Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
 Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
 Route::post('/support/chat', [SupportChatController::class, 'chat'])
