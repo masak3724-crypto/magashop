@@ -3,10 +3,15 @@ set -eu
 
 PORT="${PORT:-8080}"
 
-echo "[railway] Starting HTTP server on 0.0.0.0:${PORT} (DB init in background)..."
+echo "[railway] Boot (port ${PORT})..."
+
+chmod -R u+w storage bootstrap/cache 2>/dev/null || true
 
 sh railway/clear-cache.sh
 php artisan package:discover --no-interaction
+
+# Миграции до HTTP — иначе 500 (sessions/cache/каталог без таблиц)
+sh railway/migrate.sh
 
 sh railway/init-app.sh &
 

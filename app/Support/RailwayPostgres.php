@@ -100,22 +100,21 @@ class RailwayPostgres
         $url = env('DATABASE_PRIVATE_URL')
             ?: env('DATABASE_URL')
             ?: env('DB_URL');
-        $sslmode = env('PGSSLMODE', env('DB_SSLMODE', 'require'));
 
-        $pgsql = [
+        if (is_string($url) && $url !== '' && ! static::isPlaceholder($url)) {
+            config(['database.connections.pgsql.url' => $url]);
+
+            return;
+        }
+
+        config([
             'database.connections.pgsql.host' => env('PGHOST', env('DB_HOST', '127.0.0.1')),
             'database.connections.pgsql.port' => env('PGPORT', env('DB_PORT', '5432')),
             'database.connections.pgsql.database' => env('PGDATABASE', env('DB_DATABASE', 'railway')),
             'database.connections.pgsql.username' => env('PGUSER', env('DB_USERNAME', 'postgres')),
             'database.connections.pgsql.password' => env('PGPASSWORD', env('DB_PASSWORD', '')),
-            'database.connections.pgsql.sslmode' => $sslmode,
-        ];
-
-        if (is_string($url) && $url !== '' && ! static::isPlaceholder($url)) {
-            $pgsql['database.connections.pgsql.url'] = $url;
-        }
-
-        config($pgsql);
+            'database.connections.pgsql.sslmode' => env('PGSSLMODE', env('DB_SSLMODE', 'require')),
+        ]);
     }
 
     private static function forceHttps(): void

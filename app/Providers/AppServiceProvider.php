@@ -28,10 +28,14 @@ class AppServiceProvider extends ServiceProvider
             $cartItemsCount = 0;
 
             if (Auth::check()) {
-                $cartItemsCount = (int) DB::table('cart_items')
-                    ->join('carts', 'carts.id', '=', 'cart_items.cart_id')
-                    ->where('carts.user_id', Auth::id())
-                    ->sum('cart_items.quantity');
+                try {
+                    $cartItemsCount = (int) DB::table('cart_items')
+                        ->join('carts', 'carts.id', '=', 'cart_items.cart_id')
+                        ->where('carts.user_id', Auth::id())
+                        ->sum('cart_items.quantity');
+                } catch (\Throwable) {
+                    $cartItemsCount = 0;
+                }
             }
 
             $activeCategory = null;
