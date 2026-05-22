@@ -33,7 +33,7 @@
 
 1. Проверка `APP_KEY` и подключения PostgreSQL
 2. `migrate --force`
-3. `RailwaySeeder` (каталог только если товаров ещё нет)
+3. `RailwaySeeder` — идемпотентно: каталог по `slug` (`wb-{nm}`) + демо-пользователи
 4. `storage:link`
 
 Healthcheck: `GET /up` (см. `railway.json`).

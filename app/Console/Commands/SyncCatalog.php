@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Support\CatalogSync;
 use App\Support\ShopCache;
 use App\Support\Wildberries;
 use Illuminate\Console\Command;
@@ -22,25 +23,32 @@ class SyncCatalog extends Command
     public function handle(): int
     {
         $catalog = require database_path('data/catalog.php');
+        $products = $catalog['products'] ?? [];
 
-        $this->ensureCategories($catalog['categories'] ?? []);
-
-        $synced = 0;
-        foreach ($catalog['products'] ?? [] as $item) {
-            if ($this->upsertFromCatalogItem($item)) {
-                $synced++;
+        if ($this->option('download-images')) {
+            $this->ensureCategories($catalog['categories'] ?? []);
+            $synced = 0;
+            foreach ($products as $item) {
+                if ($this->upsertFromCatalogItem($item)) {
+                    $synced++;
+                }
+            }
+            $this->info("Из catalog.php: {$synced} товаров.");
+        } else {
+            $stats = CatalogSync::fromCatalogFile(prune: $this->option('prune'));
+            $this->info("Из catalog.php: {$stats['products']} товаров.");
+            if ($this->option('prune') && $stats['pruned'] > 0) {
+                $this->info("Удалено из БД: {$stats['pruned']} товаров без записи в каталоге.");
             }
         }
-
-        $this->info("Из catalog.php: {$synced} товаров.");
 
         if ($this->option('append-wb')) {
             $added = $this->appendFromWildberries();
             $this->info("Из Wildberries: добавлено {$added} новых товаров.");
         }
 
-        if ($this->option('prune')) {
-            $removed = $this->pruneOrphanProducts($catalog['products'] ?? []);
+        if ($this->option('prune') && $this->option('download-images')) {
+            $removed = CatalogSync::pruneOrphans($products);
             if ($removed > 0) {
                 $this->info("Удалено из БД: {$removed} товаров без записи в каталоге.");
             }
@@ -76,26 +84,6 @@ class SyncCatalog extends Command
         foreach ($categories as $cat) {
             Category::updateOrCreate(['slug' => $cat['slug']], ['name' => $cat['name']]);
         }
-    }
-
-    /** @param list<array<string, mixed>> $catalogProducts */
-    private function pruneOrphanProducts(array $catalogProducts): int
-    {
-        $slugs = [];
-        foreach ($catalogProducts as $item) {
-            $nm = (int) ($item['nm'] ?? 0);
-            if ($nm > 0) {
-                $slugs[] = 'wb-'.$nm;
-            }
-        }
-
-        if ($slugs !== []) {
-            return Product::query()->whereNotIn('slug', $slugs)->delete();
-        }
-
-        $names = array_column($catalogProducts, 'name');
-
-        return Product::query()->whereNotIn('name', $names)->delete();
     }
 
     /** @param array<string, mixed> $item */

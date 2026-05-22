@@ -3,7 +3,7 @@ set -eu
 
 . railway/env-db.sh
 
-echo "[railway] Waiting for PostgreSQL and running migrations..."
+echo "[railway] PostgreSQL: migrations + idempotent seed..."
 
 if [ -z "${DATABASE_URL:-}" ] && [ -z "${DB_URL:-}" ] && [ -z "${PGHOST:-}" ]; then
   echo "[railway] ERROR: Link PostgreSQL to this service."
@@ -32,3 +32,6 @@ done
 
 php artisan migrate --force --no-interaction
 echo "[railway] Migrations complete."
+
+php artisan db:seed --class=Database\\Seeders\\RailwaySeeder --force --no-interaction
+echo "[railway] RailwaySeeder complete (idempotent)."
