@@ -50,7 +50,7 @@ class RailwayPostgres
 
     private static function sanitizePlaceholderEnv(): void
     {
-        foreach (['APP_URL', 'DATABASE_URL', 'DB_URL'] as $key) {
+        foreach (['APP_URL', 'DATABASE_URL', 'DATABASE_PRIVATE_URL', 'DB_URL'] as $key) {
             $value = env($key);
 
             if (! is_string($value) || $value === '' || ! static::isPlaceholder($value)) {
@@ -72,7 +72,9 @@ class RailwayPostgres
 
     private static function mirrorDatabaseUrl(): void
     {
-        $url = env('DATABASE_URL') ?: env('DB_URL');
+        $url = env('DATABASE_PRIVATE_URL')
+            ?: env('DATABASE_URL')
+            ?: env('DB_URL');
 
         if (! is_string($url) || $url === '' || static::isPlaceholder($url)) {
             return;
@@ -95,7 +97,9 @@ class RailwayPostgres
             return;
         }
 
-        $url = env('DATABASE_URL') ?: env('DB_URL');
+        $url = env('DATABASE_PRIVATE_URL')
+            ?: env('DATABASE_URL')
+            ?: env('DB_URL');
         $sslmode = env('PGSSLMODE', env('DB_SSLMODE', 'require'));
 
         $pgsql = [

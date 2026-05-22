@@ -29,14 +29,16 @@
 
 ## 4. Деплой
 
-При push в `main` Railway собирает Nixpacks (`nixpacks.toml`) и перед стартом выполняет `railway/init-app.sh`:
+При push в `main` Railway собирает Nixpacks (`nixpacks.toml`). При **старте** контейнера выполняется `railway/init-app.sh`:
 
-1. Ожидание доступности PostgreSQL
+1. Проверка `APP_KEY` и подключения PostgreSQL
 2. `migrate --force`
 3. `RailwaySeeder` (каталог только если товаров ещё нет)
-4. `storage:link`, кэш config/route/view
+4. `storage:link`
 
 Healthcheck: `GET /up` (см. `railway.json`).
+
+Обязательные переменные: `APP_KEY`, `DATABASE_URL` (или связь с Postgres). Без `APP_KEY` деплой упадёт при старте — см. шаг 3.
 
 ## 5. Локальная разработка
 
@@ -87,6 +89,6 @@ railway run php artisan catalog:sync --prune
 |------|------------|
 | `nixpacks.toml` | PHP 8.4, `pdo_pgsql`, GD |
 | `railway.json` | preDeploy, healthcheck `/up` |
-| `railway/init-app.sh` | миграции и seed на PostgreSQL |
+| `railway/init-app.sh` | миграции и seed при старте контейнера |
 | `.env.railway` | шаблон переменных (только Postgres) |
 | `app/Support/RailwayPostgres.php` | URL, SSL, HTTPS на Railway |
