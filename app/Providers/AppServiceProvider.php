@@ -6,8 +6,9 @@ use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,8 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        $this->configureRailway();
+
         Paginator::useBootstrapFive();
 
         View::composer('shop.layouts.app', function ($view) {
@@ -54,5 +57,22 @@ class AppServiceProvider extends ServiceProvider
                 'activeCategory' => $activeCategory,
             ]);
         });
+    }
+
+    private function configureRailway(): void
+    {
+        if (env('DATABASE_URL') && ! env('DB_URL')) {
+            putenv('DB_URL='.env('DATABASE_URL'));
+            $_ENV['DB_URL'] = env('DATABASE_URL');
+            $_SERVER['DB_URL'] = env('DATABASE_URL');
+        }
+
+        if (env('RAILWAY_ENVIRONMENT') || env('RAILWAY_PUBLIC_DOMAIN')) {
+            URL::forceScheme('https');
+
+            if ($domain = env('RAILWAY_PUBLIC_DOMAIN')) {
+                config(['app.url' => 'https://'.$domain]);
+            }
+        }
     }
 }

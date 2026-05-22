@@ -1,0 +1,31 @@
+# Railway / Nixpacks — ModaStyle (Laravel 13)
+# https://docs.railway.com/guides/laravel
+
+[variables]
+NIXPACKS_PHP_VERSION = "8.3"
+
+[phases.setup]
+nixPkgs = [
+  "php83",
+  "php83Packages.composer",
+  "php83Extensions.gd",
+  "php83Extensions.pdo",
+  "php83Extensions.pdo_mysql",
+  "php83Extensions.pdo_pgsql",
+  "php83Extensions.mbstring",
+  "php83Extensions.curl",
+  "php83Extensions.openssl",
+  "php83Extensions.fileinfo",
+  "php83Extensions.zip",
+  "php83Extensions.tokenizer",
+  "php83Extensions.xml",
+  "php83Extensions.bcmath",
+]
+
+[phases.build]
+cmds = [
+  "composer install --no-dev --optimize-autoloader --no-interaction",
+]
+
+[start]
+cmd = "php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"

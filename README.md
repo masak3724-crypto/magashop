@@ -55,6 +55,12 @@ php artisan shop:cleanup
 - AI-чат поддержки
 - Импорт каталога с Wildberries
 
+## Деплой на Railway
+
+Пошаговая инструкция: [docs/RAILWAY.md](docs/RAILWAY.md)
+
+Шаблон переменных для панели Railway: [.env.railway](.env.railway)
+
 ## Стек
 
-- Laravel 13, Blade, Bootstrap 5, SQLite
+- Laravel 13, Blade, Bootstrap 5, SQLite (локально) / PostgreSQL (Railway)
