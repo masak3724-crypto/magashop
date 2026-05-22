@@ -4,6 +4,7 @@
     "builder": "NIXPACKS"
   },
   "deploy": {
+    "preDeployCommand": "sh railway/predeploy.sh",
     "healthcheckPath": "/up",
     "healthcheckTimeout": 300,
     "restartPolicyType": "ON_FAILURE"
