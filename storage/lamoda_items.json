@@ -1,0 +1,247 @@
+[
+    {
+        "sku": "AD002AMCDJO6",
+        "slug": "shoes-adidas-slantsy\/",
+        "name": "Slantsy\/ Adidas",
+        "category": "obuv",
+        "source": "lamoda"
+    },
+    {
+        "sku": "AD002EMEEHK9",
+        "slug": "clothes-adidas-bryuki-sportivnye\/",
+        "name": "Sportivnye\/ bryuki Adidas",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "AD002EMFKSD4",
+        "slug": "clothes-adidas-plavki\/",
+        "name": "Plavki\/ Adidas",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "AD002EMIIBP7",
+        "slug": "clothes-adidas-futbolka-sportivnaya\/",
+        "name": "Sportivnaya\/ futbolka Adidas",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "AD002EWJMTM4",
+        "slug": "clothes-adidas-kurtka-uteplennaya\/",
+        "name": "Uteplennaya\/ kurtka Adidas",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "AD002EWKTOM3",
+        "slug": "clothes-adidas-pukhovik\/",
+        "name": "Pukhovik\/ Adidas",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "AD093AKJFPH8",
+        "slug": "shoes-adidas-kedy\/",
+        "name": "Kedy\/ Adidas",
+        "category": "obuv",
+        "source": "lamoda"
+    },
+    {
+        "sku": "AD093AMFWTP2",
+        "slug": "shoes-adidasoriginals-kedy\/",
+        "name": "Kedy\/ Adidasoriginals",
+        "category": "obuv",
+        "source": "lamoda"
+    },
+    {
+        "sku": "AD093EMLWXP3",
+        "slug": "clothes-adidasoriginals-bryuki-sportivnye\/",
+        "name": "Sportivnye\/ bryuki Adidasoriginals",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "AD093FUJYTJ0",
+        "slug": "clothes-adidasoriginals-noski-pary\/",
+        "name": "Pary\/ noski Adidasoriginals",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "BE033EWHHV04",
+        "slug": "clothes-beachbunny-plavki\/",
+        "name": "Plavki\/ Beachbunny",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "BR028EMYOY72",
+        "slug": "clothes-bruebeck-sviter\/",
+        "name": "Sviter\/ Bruebeck",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "BY004EWRPM40",
+        "slug": "clothes-byswan-kurtka-uteplennaya\/",
+        "name": "Uteplennaya\/ kurtka  Swan",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "CA088EMDSBK2",
+        "slug": "clothes-carharttwip-futbolka\/",
+        "name": "Futbolka\/ Carharttwip",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "CA088EMPXA46",
+        "slug": "clothes-carharttwip-bryuki\/",
+        "name": "Bryuki\/ Carharttwip",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "CA148EMMESG0",
+        "slug": "clothes-carharttwip-dzhinsy\/",
+        "name": "Dzhinsy\/ Carharttwip",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "CH991EBKHR56",
+        "slug": "clothes-choupette-rubashka\/",
+        "name": "Rubashka\/ Choupette",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "CH991EGFQMF0",
+        "slug": "clothes-choupette-yubkashorty\/",
+        "name": "Yubkashorty\/ Choupette",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "CH991EGJMVW9",
+        "slug": "clothes-choupette-yubka\/",
+        "name": "Yubka\/ Choupette",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "CH991EGJPIS1",
+        "slug": "clothes-choupette-zhaket\/",
+        "name": "Zhaket\/ Choupette",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "DA026EWHOED3",
+        "slug": "clothes-dagadom-kupalnik\/",
+        "name": "Kupalnik\/ Dagadom",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "DI031EWCRWY4",
+        "slug": "clothes-ditavonteese-trusy\/",
+        "name": "Trusy\/ Ditavonteese",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "DI031EWCRWZ0",
+        "slug": "clothes-ditavonteese-byustgalter\/",
+        "name": "Byustgalter\/ Ditavonteese",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "DO005AWRFI59",
+        "slug": "shoes-dorothyperkins-botilony\/",
+        "name": "Botilony\/ Dorothyperkins",
+        "category": "obuv",
+        "source": "lamoda"
+    },
+    {
+        "sku": "EA002EMJUUR6",
+        "slug": "clothes-ea7-kostyum-sportivnyy\/",
+        "name": "Sportivnyy\/ kostyum Ea7",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "FR006EMAYR80",
+        "slug": "clothes-fredperry-polo\/",
+        "name": "Polo\/ Fredperry",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "FR006EMBUFO9",
+        "slug": "clothes-fredperry-futbolka\/",
+        "name": "Futbolka\/ Fredperry",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "GE347ABFQSD6",
+        "slug": "shoes-geox-kedy\/",
+        "name": "Kedy\/ Geox",
+        "category": "obuv",
+        "source": "lamoda"
+    },
+    {
+        "sku": "GE347ABKKSQ0",
+        "slug": "shoes-geox-botinki\/",
+        "name": "Botinki\/ Geox",
+        "category": "obuv",
+        "source": "lamoda"
+    },
+    {
+        "sku": "GE347AGFQSD4",
+        "slug": "shoes-geox-tufli\/",
+        "name": "Tufli\/ Geox",
+        "category": "obuv",
+        "source": "lamoda"
+    },
+    {
+        "sku": "GE347AGKKSP7",
+        "slug": "shoes-geox-lofery\/",
+        "name": "Lofery\/ Geox",
+        "category": "obuv",
+        "source": "lamoda"
+    },
+    {
+        "sku": "HE012EWKGQB8",
+        "slug": "clothes-hellyhansen-pukhovik\/",
+        "name": "Pukhovik\/ Hellyhansen",
+        "category": "odezhda",
+        "source": "lamoda"
+    },
+    {
+        "sku": "HU028AWFVPF6",
+        "slug": "shoes-hunter-sapogi-rezinovye\/",
+        "name": "Rezinovye\/ sapogi Hunter",
+        "category": "obuv",
+        "source": "lamoda"
+    },
+    {
+        "sku": "HU028AWIEAJ1",
+        "slug": "shoes-hunter-polusapogi-rezinovye\/",
+        "name": "Rezinovye\/ polusapogi Hunter",
+        "category": "obuv",
+        "source": "lamoda"
+    },
+    {
+        "sku": "HU028AWMIKC3",
+        "slug": "shoes-hunter-sabo\/",
+        "name": "Sabo\/ Hunter",
+        "category": "obuv",
+        "source": "lamoda"
+    }
+]

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="tire" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d4a9e"/>
+      <stop offset="100%" stop-color="#1a2a6c"/>
+    </linearGradient>
+    <linearGradient id="hub" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#e85d04"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <circle cx="100" cy="100" r="85" stroke="url(#tire)" stroke-width="14" filter="url(#glow)"/>
+  <circle cx="100" cy="100" r="38" stroke="url(#hub)" stroke-width="10"/>
+  <path stroke="url(#tire)" stroke-width="5" stroke-linecap="round" d="M100 12v32M100 156v32M12 100h32M156 100h32M30 30l23 23M147 147l23 23M30 170l23-23M147 53l23-23"/>
+</svg>

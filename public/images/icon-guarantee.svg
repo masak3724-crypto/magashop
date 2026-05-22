@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="guarantee" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+  <path d="M32 6L10 16v16c0 14 9.5 26.5 22 30 12.5-3.5 22-16 22-30V16L32 6z" stroke="url(#guarantee)" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M24 32l6 6 12-14" stroke="url(#guarantee)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
