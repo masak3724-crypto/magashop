@@ -7,6 +7,7 @@
 *.php diff=php
 *.sh text eol=lf
 railway/init-app.sh text eol=lf
+railway/start.sh text eol=lf
 
 /.github export-ignore
 CHANGELOG.md export-ignore

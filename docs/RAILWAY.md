@@ -29,7 +29,7 @@
 
 ## 4. Деплой
 
-При push в `main` Railway собирает Nixpacks (`nixpacks.toml`). При **старте** контейнера выполняется `railway/init-app.sh`:
+При push в `main` Railway собирает Nixpacks (`nixpacks.toml`). При **старте** контейнера `railway/start.sh` сразу поднимает HTTP-сервер, а `railway/init-app.sh` (миграции, seed) идёт **в фоне** — иначе healthcheck `/up` не успевает ответить.
 
 1. Проверка `APP_KEY` и подключения PostgreSQL
 2. `migrate --force`
@@ -89,6 +89,7 @@ railway run php artisan catalog:sync --prune
 |------|------------|
 | `nixpacks.toml` | PHP 8.4, `pdo_pgsql`, GD |
 | `railway.json` | preDeploy, healthcheck `/up` |
-| `railway/init-app.sh` | миграции и seed при старте контейнера |
+| `railway/start.sh` | сервер + фоновая инициализация |
+| `railway/init-app.sh` | миграции и seed (фон) |
 | `.env.railway` | шаблон переменных (только Postgres) |
 | `app/Support/RailwayPostgres.php` | URL, SSL, HTTPS на Railway |
