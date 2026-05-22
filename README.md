@@ -4,9 +4,9 @@
 
 ## Требования
 
-- PHP 8.3+
+- PHP 8.4+
 - Composer
-- SQLite (по умолчанию) или MySQL
+- SQLite (локально) или PostgreSQL (продакшен / Railway)
 - Git (опционально)
 
 ## Установка и запуск

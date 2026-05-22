@@ -1,77 +1,92 @@
-# Деплой ModaStyle на Railway
+# Деплой ModaStyle на Railway (PostgreSQL)
+
+Проект настроен на **PostgreSQL** в продакшене. SQLite на Railway не используется — данные теряются при пересборке.
 
 ## 1. Создать проект
 
 1. [railway.app/new](https://railway.app/new) → **Deploy from GitHub repo**
-2. Репозиторий: `masak3724-crypto/magashop`
-3. Ветка: `main`
+2. Репозиторий: `masak3724-crypto/magashop`, ветка `main`
 
-## 2. База данных
+## 2. PostgreSQL
 
-На canvas добавьте **PostgreSQL** (рекомендуется) или **MySQL**.
+1. На canvas проекта: **+ New** → **Database** → **PostgreSQL**
+2. Имя сервиса по умолчанию: `Postgres` (если переименуете — обновите переменные в шаге 3)
+3. Откройте сервис Laravel → **Settings** → **Connect** (или перетащите стрелку Postgres → Web) — Railway подставит `DATABASE_URL`
 
-SQLite на Railway **не подходит** — файловая система сбрасывается при деплое.
+## 3. Переменные Laravel-сервиса
 
-## 3. Переменные окружения
+**Variables** → **Raw Editor** — вставьте [`.env.railway`](../.env.railway).
 
-В сервисе Laravel: **Variables** → **Raw Editor** — вставьте содержимое файла [`.env.railway`](../.env.railway) из репозитория.
+Обязательно:
 
-Обязательно задайте `APP_KEY` (локально):
+| Переменная | Значение |
+|------------|----------|
+| `APP_KEY` | `php artisan key:generate --show` (локально) |
+| `DATABASE_URL` | `${{Postgres.DATABASE_URL}}` (из шаблона) |
+| `DB_CONNECTION` | `pgsql` |
 
-```bash
-php artisan key:generate --show
-```
-
-Скопируйте значение в Railway.
-
-После выдачи домена в **Networking** → **Generate Domain** обновите:
-
-```env
-APP_URL=https://ваш-домен.up.railway.app
-```
+После **Networking** → **Generate Domain** Railway подставит `RAILWAY_PUBLIC_DOMAIN`; `APP_URL` обновится автоматически из шаблона.
 
 ## 4. Деплой
 
-При push в `main` Railway собирает проект автоматически.
+При push в `main` Railway собирает Nixpacks (`nixpacks.toml`) и перед стартом выполняет `railway/init-app.sh`:
 
-Перед стартом выполняется `railway/init-app.sh`:
+1. Ожидание доступности PostgreSQL
+2. `migrate --force`
+3. `RailwaySeeder` (каталог только если товаров ещё нет)
+4. `storage:link`, кэш config/route/view
 
-- миграции
-- начальное наполнение каталога (если товаров ещё нет)
-- `storage:link`, кэш config/route/view
+Healthcheck: `GET /up` (см. `railway.json`).
 
-Проверка здоровья: `GET /up`
+## 5. Локальная разработка
 
-## 5. Демо-аккаунты (после первого seed)
+| Окружение | БД |
+|-----------|-----|
+| Локально (по умолчанию) | SQLite — `.env.example` |
+| Railway / прод | PostgreSQL — `.env.railway` |
+
+Локально с PostgreSQL (Docker):
+
+```bash
+docker run -d --name modastyle-pg -e POSTGRES_PASSWORD=secret -e POSTGRES_DB=modastyle -p 5432:5432 postgres:16
+```
+
+В `.env`:
+
+```env
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=modastyle
+DB_USERNAME=postgres
+DB_PASSWORD=secret
+```
+
+## 6. Демо-аккаунты (после первого seed)
 
 | Роль | Email | Пароль |
 |------|-------|--------|
 | Админ | admin@modastyle.ru | password |
 | Покупатель | demo@modastyle.ru | password |
 
-Смените пароли после выкладки в прод.
+Смените пароли в продакшене.
 
-## 6. CLI (опционально)
+## 7. CLI
 
 ```bash
 npm i -g @railway/cli
 railway login
 railway link
-railway up
-```
-
-## 7. Обновление каталога на сервере
-
-```bash
+railway run php artisan migrate:status
 railway run php artisan catalog:sync --prune
-railway run php artisan products:sync-images
 ```
 
-## Структура файлов Railway
+## Файлы конфигурации
 
 | Файл | Назначение |
 |------|------------|
-| `nixpacks.toml` | PHP 8.3, расширения, `composer install` |
-| `railway.json` | preDeploy, healthcheck |
-| `railway/init-app.sh` | миграции и первичный seed |
-| `.env.railway` | шаблон переменных |
+| `nixpacks.toml` | PHP 8.4, `pdo_pgsql`, GD |
+| `railway.json` | preDeploy, healthcheck `/up` |
+| `railway/init-app.sh` | миграции и seed на PostgreSQL |
+| `.env.railway` | шаблон переменных (только Postgres) |
+| `app/Support/RailwayPostgres.php` | URL, SSL, HTTPS на Railway |

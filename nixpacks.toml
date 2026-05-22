@@ -1,25 +1,24 @@
 # Railway / Nixpacks — ModaStyle (Laravel 13)
-# https://docs.railway.com/guides/laravel
+# Symfony 8 / Laravel 13.9+ требуют PHP >= 8.4
 
 [variables]
-NIXPACKS_PHP_VERSION = "8.3"
+NIXPACKS_PHP_VERSION = "8.4"
 
 [phases.setup]
 nixPkgs = [
-  "php83",
-  "php83Packages.composer",
-  "php83Extensions.gd",
-  "php83Extensions.pdo",
-  "php83Extensions.pdo_mysql",
-  "php83Extensions.pdo_pgsql",
-  "php83Extensions.mbstring",
-  "php83Extensions.curl",
-  "php83Extensions.openssl",
-  "php83Extensions.fileinfo",
-  "php83Extensions.zip",
-  "php83Extensions.tokenizer",
-  "php83Extensions.xml",
-  "php83Extensions.bcmath",
+  "php84",
+  "php84Packages.composer",
+  "php84Extensions.gd",
+  "php84Extensions.pdo",
+  "php84Extensions.pdo_pgsql",
+  "php84Extensions.mbstring",
+  "php84Extensions.curl",
+  "php84Extensions.openssl",
+  "php84Extensions.fileinfo",
+  "php84Extensions.zip",
+  "php84Extensions.tokenizer",
+  "php84Extensions.xml",
+  "php84Extensions.bcmath",
 ]
 
 [phases.build]
