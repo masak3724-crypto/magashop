@@ -3,6 +3,8 @@
 
 [variables]
 NIXPACKS_PHP_VERSION = "8.4"
+# Валидный URL на этапе сборки (в Variables Railway не подставляйте ${{...}} в APP_URL)
+APP_URL = "http://localhost"
 
 [phases.setup]
 nixPkgs = [
@@ -23,7 +25,7 @@ nixPkgs = [
 
 [phases.build]
 cmds = [
-  "composer install --no-dev --optimize-autoloader --no-interaction",
+  "composer install --no-dev --optimize-autoloader --no-interaction --no-scripts",
 ]
 
 [start]

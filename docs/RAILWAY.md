@@ -25,7 +25,7 @@
 | `DATABASE_URL` | `${{Postgres.DATABASE_URL}}` (из шаблона) |
 | `DB_CONNECTION` | `pgsql` |
 
-После **Networking** → **Generate Domain** Railway подставит `RAILWAY_PUBLIC_DOMAIN`; `APP_URL` обновится автоматически из шаблона.
+После **Networking** → **Generate Domain** Railway задаёт `RAILWAY_PUBLIC_DOMAIN` — приложение само выставит HTTPS URL (не добавляйте `APP_URL=${{RAILWAY_PUBLIC_DOMAIN}}`, это ломает `composer install` при сборке).
 
 ## 4. Деплой
 

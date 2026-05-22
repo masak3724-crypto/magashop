@@ -22,6 +22,7 @@ until php artisan db:show --no-interaction 2>/dev/null; do
   sleep 3
 done
 
+php artisan package:discover --no-interaction
 php artisan storage:link --force 2>/dev/null || true
 php artisan migrate --force --no-interaction
 php artisan db:seed --class=Database\\Seeders\\RailwaySeeder --force --no-interaction
