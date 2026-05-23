@@ -13,6 +13,7 @@ railway/env-db.sh text eol=lf
 railway/migrate.sh text eol=lf
 railway/seed.sh text eol=lf
 railway/predeploy.sh text eol=lf
+railway/check-db.php text eol=lf
 
 /.github export-ignore
 CHANGELOG.md export-ignore
