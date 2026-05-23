@@ -29,9 +29,8 @@ cmds = ["true"]
 [phases.build]
 cmds = [
   "composer install --no-dev --optimize-autoloader --no-interaction --no-scripts",
-  "sh railway/clear-cache.sh",
-  "APP_KEY=base64:ZmFrZWtleWZvcmJ1aWxkb25seTEyMzQ1Njc4OTBhYmNkZWZnaGlq php artisan package:discover --no-interaction",
 ]
+# package:discover — в pre-deploy (после COPY . /app в образе)
 
 [start]
 cmd = "sh railway/start.sh"
