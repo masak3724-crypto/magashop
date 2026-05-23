@@ -6,3 +6,5 @@ rm -f bootstrap/cache/config.php
 rm -f bootstrap/cache/routes-v7.php
 rm -f bootstrap/cache/routes-*.php
 rm -f bootstrap/cache/events.php
+
+php artisan cache:clear --no-interaction 2>/dev/null || true
