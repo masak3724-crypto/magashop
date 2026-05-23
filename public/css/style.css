@@ -935,6 +935,7 @@ main {
     background: linear-gradient(135deg, #5b7cfa 0%, #7c3aed 100%);
 }
 
+.social-links a.social-max svg,
 .social-links a.social-max img {
     display: block;
     width: 26px;
