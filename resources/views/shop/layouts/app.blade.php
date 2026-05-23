@@ -101,7 +101,7 @@
                 <div class="social-links">
                     <a href="https://vk.ru" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте"><i class="fab fa-vk"></i></a>
                     <a href="https://max.ru" target="_blank" rel="noopener noreferrer" class="social-max" aria-label="Мессенджер MAX">
-                        @include('shop.partials.icon-messenger-max')
+                        <img src="{{ asset('images/icon-max.svg') }}" alt="MAX">
                     </a>
                 </div>
             </div>

@@ -21,7 +21,7 @@
                     <h4><i class="fas fa-phone me-2"></i>Связь</h4>
                     <p>Тел.: <a href="tel:+79379535480">+7 937 953 54 80</a><br>Email: info@modastyle.ru<br>
                     <a href="https://max.ru" target="_blank" rel="noopener" class="text-decoration-none d-inline-flex align-items-center gap-2 mt-2">
-                        @include('shop.partials.icon-messenger-max') Мессенджер MAX
+                        <img src="{{ asset('images/icon-max.svg') }}" alt="" width="20" height="20"> Мессенджер MAX
                     </a></p>
                     <p class="mb-0"><strong>Часы работы:</strong> Пн–Вс 9:00–20:00</p>
                 </div>
