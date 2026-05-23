@@ -3,7 +3,6 @@
 
 [variables]
 NIXPACKS_PHP_VERSION = "8.4"
-APP_URL = "http://localhost"
 
 [phases.setup]
 nixPkgs = [

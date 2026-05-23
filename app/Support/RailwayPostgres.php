@@ -2,6 +2,7 @@
 
 namespace App\Support;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 
 class RailwayPostgres
@@ -16,7 +17,11 @@ class RailwayPostgres
 
         static::mirrorDatabaseUrl();
         static::configureConnection();
-        static::forceHttps();
+        static::forceAppUrl();
+
+        if (! app()->runningInConsole() && app()->bound('request')) {
+            static::applyFromRequest(app('request'));
+        }
     }
 
     public static function isRailway(): bool
@@ -33,19 +38,67 @@ class RailwayPostgres
 
     public static function resolveAppUrl(): ?string
     {
-        $url = env('APP_URL');
-
-        if (is_string($url) && $url !== '' && ! static::isPlaceholder($url) && filter_var($url, FILTER_VALIDATE_URL)) {
-            return $url;
-        }
-
         $domain = env('RAILWAY_PUBLIC_DOMAIN');
 
         if (is_string($domain) && $domain !== '' && ! static::isPlaceholder($domain)) {
             return 'https://'.$domain;
         }
 
+        $url = env('APP_URL');
+
+        if (is_string($url) && $url !== '' && ! static::isPlaceholder($url) && filter_var($url, FILTER_VALIDATE_URL)) {
+            $host = parse_url($url, PHP_URL_HOST);
+
+            if (! static::isRailway() || ! static::isLoopbackHost(is_string($host) ? $host : null)) {
+                return $url;
+            }
+        }
+
         return null;
+    }
+
+    public static function applyFromRequest(Request $request): void
+    {
+        if (! static::isRailway()) {
+            return;
+        }
+
+        $host = $request->header('X-Forwarded-Host') ?: $request->getHost();
+
+        if (! is_string($host) || $host === '' || static::isLoopbackHost($host)) {
+            return;
+        }
+
+        $proto = $request->header('X-Forwarded-Proto');
+        $scheme = is_string($proto) && $proto !== '' ? $proto : $request->getScheme();
+        $root = rtrim($scheme.'://'.$host, '/');
+
+        static::setAppUrl($root, $scheme === 'https' || $request->isSecure());
+    }
+
+    /** @param  ?string  $host */
+    public static function isLoopbackHost(?string $host): bool
+    {
+        if ($host === null || $host === '') {
+            return false;
+        }
+
+        $host = strtolower($host);
+
+        return in_array($host, ['localhost', '127.0.0.1', '0.0.0.0', '[::1]'], true);
+    }
+
+    private static function setAppUrl(string $root, bool $https): void
+    {
+        putenv('APP_URL='.$root);
+        $_ENV['APP_URL'] = $root;
+        $_SERVER['APP_URL'] = $root;
+        config(['app.url' => $root]);
+        URL::forceRootUrl($root);
+
+        if ($https) {
+            URL::forceScheme('https');
+        }
     }
 
     private static function sanitizePlaceholderEnv(): void
@@ -117,7 +170,7 @@ class RailwayPostgres
         ]);
     }
 
-    private static function forceHttps(): void
+    private static function forceAppUrl(): void
     {
         $appUrl = static::resolveAppUrl();
 
@@ -125,8 +178,6 @@ class RailwayPostgres
             return;
         }
 
-        config(['app.url' => $appUrl]);
-        URL::forceRootUrl($appUrl);
-        URL::forceScheme('https');
+        static::setAppUrl($appUrl, true);
     }
 }
