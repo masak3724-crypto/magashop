@@ -72,7 +72,7 @@
     </div>
 </section>
 
-<section class="py-5" style="background: linear-gradient(180deg, #fff 0%, var(--light) 100%);">
+<section class="py-5 why-section">
     <div class="container">
         <div class="text-center mb-5">
             <h2 class="section-title" style="color: var(--primary-dark);">Почему ModaStyle</h2>

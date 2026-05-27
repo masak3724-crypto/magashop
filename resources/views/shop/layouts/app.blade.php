@@ -38,7 +38,16 @@
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">О нас</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('contacts') ? 'active' : '' }}" href="{{ route('contacts') }}">Контакты</a></li>
             </ul>
-            <div class="d-flex align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2 header-actions">
+                <button
+                    type="button"
+                    class="btn btn-outline-light rounded-0 px-3 theme-toggle"
+                    data-theme-toggle
+                    aria-label="Переключить тему"
+                    title="Переключить тему"
+                >
+                    <i class="fas fa-moon" data-theme-icon></i>
+                </button>
                 @auth
                 <a href="{{ route('cart') }}" class="btn btn-outline-light position-relative rounded-0 px-3">
                     <i class="fas fa-shopping-bag"></i>

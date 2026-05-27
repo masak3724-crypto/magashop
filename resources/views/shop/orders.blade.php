@@ -3,7 +3,7 @@
 @section('content')
 <div class="container py-5">
     <div class="card shadow-sm">
-        <div class="card-header text-white py-3" style="background: var(--primary);">
+        <div class="card-header text-white py-3 panel-header">
             <h2 class="mb-0 h4"><i class="fas fa-list me-2"></i>Мои заказы</h2>
         </div>
         <div class="card-body p-0">

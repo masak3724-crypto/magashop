@@ -43,6 +43,15 @@
         <header class="admin-header">
             <h1 class="admin-page-title mb-0">@yield('page_title', 'Панель управления')</h1>
             <div class="d-flex align-items-center gap-3">
+                <button
+                    type="button"
+                    class="btn btn-sm btn-outline-secondary theme-toggle"
+                    data-theme-toggle
+                    aria-label="Переключить тему"
+                    title="Переключить тему"
+                >
+                    <i class="fas fa-moon" data-theme-icon></i>
+                </button>
                 <span class="text-muted small">{{ auth()->user()->name }}</span>
                 <form action="{{ route('logout') }}" method="POST">@csrf
                     <button type="submit" class="btn btn-sm btn-outline-secondary">Выйти</button>
@@ -67,6 +76,7 @@
     </main>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('js/script.js') }}" defer></script>
 @stack('scripts')
 </body>
 </html>

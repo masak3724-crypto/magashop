@@ -1,7 +1,7 @@
 @extends('shop.layouts.app')
 @section('title', 'Контакты')
 @section('content')
-<section class="text-white text-center py-5" style="background: var(--primary);">
+<section class="text-white text-center py-5 contacts-hero">
     <div class="container">
         <h1 class="display-5"><i class="fas fa-envelope me-2"></i>Контакты</h1>
         <p class="lead">Вопросы по размеру, заказу и доставке</p>

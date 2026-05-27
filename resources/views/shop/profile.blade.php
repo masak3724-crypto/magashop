@@ -21,7 +21,7 @@
         </div>
         <div class="col-md-8">
             <div class="card shadow-sm">
-                <div class="card-header text-white" style="background: var(--primary);">Мои заказы</div>
+                <div class="card-header text-white panel-header">Мои заказы</div>
                 <div class="card-body">
                     @if($orders->isNotEmpty())
                     <div class="table-responsive">
