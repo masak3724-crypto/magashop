@@ -19,6 +19,12 @@ sh railway/migrate.sh || {
   exit 1
 }
 
+echo "[railway] Optimizing (config/route/view caches)..."
+php artisan optimize --no-interaction || {
+  echo "[railway] optimize failed"
+  exit 1
+}
+
 php artisan storage:link --force 2>/dev/null || true
 
 echo "[railway] Pre-deploy complete."
