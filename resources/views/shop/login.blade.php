@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-5">
             <div class="card shadow-sm" style="border-radius: 15px; overflow: hidden;">
-                <div class="card-header text-white py-3" style="background: var(--primary);">
+                <div class="card-header text-white py-3 panel-header">
                     <h3 class="mb-0"><i class="fas fa-sign-in-alt me-2"></i>Вход</h3>
                 </div>
                 <div class="card-body p-4">

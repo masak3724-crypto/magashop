@@ -123,7 +123,13 @@ main {
 }
 
 :root[data-theme="dark"] .brand-logo__img--dark {
-    display: inline !important;
+    display: none !important;
+}
+
+@media (min-width: 576px) {
+    :root[data-theme="dark"] .brand-logo__img--dark {
+        display: inline !important;
+    }
 }
 
 .why-section {
